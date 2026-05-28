@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b6wr5hxa61v5d"]
+
+[ext_resource type="Script" uid="uid://dh71p7ldccgtw" path="res://CameraRig.cs" id="1_0vvw7"]
+
+[node name="CameraRig" type="Node3D" unique_id=1868755040 node_paths=PackedStringArray("SpringArm", "Camera", "CenterRay", "LeftRay", "RightRay", "UpRay")]
+script = ExtResource("1_0vvw7")
+SpringArm = NodePath("SpringArm3D")
+Camera = NodePath("SpringArm3D/Camera3D")
+CenterRay = NodePath("center")
+LeftRay = NodePath("left")
+RightRay = NodePath("right")
+UpRay = NodePath("up")
+
+[node name="left" type="RayCast3D" parent="." unique_id=1695118203]
+
+[node name="right" type="RayCast3D" parent="." unique_id=1422262660]
+
+[node name="up" type="RayCast3D" parent="." unique_id=547130095]
+
+[node name="center" type="RayCast3D" parent="." unique_id=351463682]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=148462583]
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1793758641]

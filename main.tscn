@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cec7otnj6ymnc"]
+
+[ext_resource type="PackedScene" uid="uid://bx8d8uvb0sfni" path="res://player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://b6wr5hxa61v5d" path="res://camera_rig.tscn" id="2_h2yge"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_lquwl"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h2yge"]
+top_radius = 4.0
+bottom_radius = 4.0
+height = 20.0
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_0xm2m"]
+radius = 2.0
+section_length = 4.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(10, 20, 20)
+
+[node name="Main" type="Node3D" unique_id=855486565]
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1338191364]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=415479268]
+transform = Transform3D(43.087765, 0, 0, 0, 1, 0, 0, 0, 45.951553, 0, 0, 0)
+mesh = SubResource("PlaneMesh_1bvp3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1673802444]
+shape = SubResource("WorldBoundaryShape3D_lquwl")
+
+[node name="Player" parent="." unique_id=1668924819 instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CameraRig" parent="." unique_id=1868755040 node_paths=PackedStringArray("Player") instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
+Player = NodePath("../Player")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=162528123]
+transform = Transform3D(1, 0, 0, 0, -0.41829517, 0.9083111, 0, -0.9083111, -0.41829517, 0, 6.1282687, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=555378323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8269043, 10.024138, 0)
+use_collision = true
+mesh = SubResource("CylinderMesh_h2yge")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="." unique_id=192278481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.275829, 10.002099, 0)
+use_collision = true
+mesh = SubResource("TubeTrailMesh_0xm2m")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="." unique_id=960753530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.275829, 10.002099, 17.718697)
+use_collision = true
+mesh = SubResource("TubeTrailMesh_0xm2m")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="." unique_id=50409521]
+transform = Transform3D(1, 0, 0, 0, 0.04269525, -0.99908817, 0, 0.99908817, 0.04269525, 15.275829, 18.7006, 8.607793)
+use_collision = true
+mesh = SubResource("TubeTrailMesh_0xm2m")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2109758058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.820223, 11.992192, 7.333225)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=549794138]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.242571, 0, 0)
+shape = SubResource("BoxShape3D_h2yge")
+
+[connection signal="body_entered" from="Area3D" to="CameraRig" method="entered"]
+[connection signal="body_exited" from="Area3D" to="CameraRig" method="exited"]
