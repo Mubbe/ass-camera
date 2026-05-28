@@ -20,8 +20,8 @@ section_length = 4.0
 size = Vector3(10, 20, 20)
 
 [sub_resource type="PrismMesh" id="PrismMesh_0xm2m"]
-left_to_right = -2.0
-size = Vector3(10, 10, 10)
+left_to_right = -0.7
+size = Vector3(10, 6, 10)
 
 [node name="Main" type="Node3D" unique_id=855486565]
 

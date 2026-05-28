@@ -165,7 +165,7 @@ public partial class CameraRig : Node3D
         if (CenterRay.IsColliding())
         {
             float hitDist = pivot.DistanceTo(CenterRay.GetCollisionPoint());
-            targetDistance = Mathf.Min(targetDistance, hitDist - 0.2f);
+            targetDistance = Mathf.Min(targetDistance, hitDist - 0.5f);
 
 			
         }
